@@ -1,0 +1,252 @@
+.dashboard-body {
+    display: flex;
+    height: 100vh;
+    background: #1a1a2e;
+}
+
+.sidebar {
+    width: 220px;
+    background: #16213e;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+.sidebar h2 {
+    color: #e94560;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.sidebar nav button {
+    padding: 10px;
+    background: #0f3460;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.sidebar nav button:hover {
+    background: #e94560;
+}
+
+.sidebar > button {
+    padding: 10px;
+    background: #e94560;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.sidebar > button:hover {
+    background: #c73652;
+}
+
+.contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topbar {
+    background: #16213e;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.topbar h3 {
+    color: white;
+    font-size: 18px;
+}
+
+.topbar span {
+    color: #e94560;
+    font-weight: bold;
+}
+
+#contenido-principal {
+    padding: 25px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.tarjeta {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.tarjeta h4 {
+    color: #a8a8b3;
+    font-size: 13px;
+}
+
+.tarjeta p {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.tarjeta span {
+    color: #e94560;
+    font-size: 12px;
+}
+
+.tabla-container {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.tabla-container h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    color: #a8a8b3;
+    text-align: left;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #0f3460;
+}
+
+table td {
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #0f3460;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge.completo { background: #1a472a; color: #51cf66; }
+.badge.incompleto { background: #4a1942; color: #e94560; }
+.badge.pendiente { background: #2c3e50; color: #f39c12; }
+.badge.activo { background: #1a472a; color: #51cf66; }
+.badge.inactivo { background: #4a1942; color: #e94560; }
+
+.formulario {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.formulario h4 {
+    color: white;
+    font-size: 16px;
+}
+
+.formulario input, .formulario select {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #0f3460;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.formulario input::placeholder {
+    color: #a8a8b3;
+}
+
+.formulario button {
+    padding: 12px;
+    background: #e94560;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.formulario button:hover {
+    background: #c73652;
+}
+
+.alerta {
+    background: #4a1942;
+    border-left: 4px solid #e94560;
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.alerta span {
+    color: #e94560;
+    font-weight: bold;
+}
+
+.tabla-container select {
+    padding: 6px 10px;
+    background: #0f3460;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.tabla-container select:hover {
+    background: #e94560;
+}
+
+.tabla-container select option {
+    background: #16213e;
+    color: white;
+}
