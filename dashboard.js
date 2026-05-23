@@ -115,82 +115,40 @@ function mostrarDashboard() {
                 <span style="color:#51cf66">${activos} en turno / ${inactivos} sin turno</span>
             </div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 25px;">
             <div class="tabla-container">
-                <h4>Entradas vs Salidas por Producto</h4>
-                <canvas id="graficoMovimientos"></canvas>
-            </div>
-            <div class="tabla-container">
-                <h4>Stock Actual por Producto</h4>
-                <canvas id="graficoStock"></canvas>
-            </div>
-        </div>
-        <div class="tabla-container">
-            <h4>Movimientos Recientes</h4>
-            <table>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Producto</th>
-                    <th>Tipo</th>
-                    <th>Cantidad</th>
-                    <th>Estado</th>
-                </tr>
-                ${movimientos.map(m => `
+                <h4>Movimientos Recientes</h4>
+                <table>
                     <tr>
-                        <td>${m.fecha}</td>
-                        <td>${m.producto}</td>
-                        <td>${m.tipo}</td>
-                        <td>${m.cantidad}</td>
-                        <td><span class="badge ${m.estado}">${m.estado}</span></td>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
                     </tr>
-                `).join("")}
-            </table>
+                    ${movimientos.map(m => `
+                        <tr>
+                            <td>${m.fecha}</td>
+                            <td>${m.producto}</td>
+                            <td>${m.tipo}</td>
+                            <td>${m.cantidad}</td>
+                            <td><span class="badge ${m.estado}">${m.estado}</span></td>
+                        </tr>
+                    `).join("")}
+                </table>
+            </div>
+            <div class="tabla-container" style="display:flex; flex-direction:column; align-items:center;">
+                <h4>Stock por Producto</h4>
+                <div style="width:200px; height:200px;">
+                    <canvas id="graficoStock"></canvas>
+                </div>
+            </div>
         </div>
     `;
 
-    // Gráfico Entradas vs Salidas
-    const entradaPorProducto = productos.map(p =>
-        movimientos.filter(m => m.producto === p.nombre && m.tipo === "Entrada")
-            .reduce((sum, m) => sum + m.cantidad, 0)
-    );
-    const salidaPorProducto = productos.map(p =>
-        movimientos.filter(m => m.producto === p.nombre && m.tipo === "Salida")
-            .reduce((sum, m) => sum + m.cantidad, 0)
-    );
-
-    const ctx1 = document.getElementById("graficoMovimientos").getContext("2d");
-    new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: productos.map(p => p.nombre.replace(" 330ml", "")),
-            datasets: [
-                {
-                    label: "Entradas",
-                    data: entradaPorProducto,
-                    backgroundColor: "#51cf66"
-                },
-                {
-                    label: "Salidas",
-                    data: salidaPorProducto,
-                    backgroundColor: "#e94560"
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { labels: { color: "white" } }
-            },
-            scales: {
-                x: { ticks: { color: "white" }, grid: { color: "#0f3460" } },
-                y: { ticks: { color: "white" }, grid: { color: "#0f3460" } }
-            }
-        }
-    });
-
-    // Gráfico Stock
-    const ctx2 = document.getElementById("graficoStock").getContext("2d");
-    new Chart(ctx2, {
+    const ctx = document.getElementById("graficoStock").getContext("2d");
+    new Chart(ctx, {
         type: "doughnut",
         data: {
             labels: productos.map(p => p.nombre.replace(" 330ml", "")),
@@ -201,8 +159,12 @@ function mostrarDashboard() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
-                legend: { labels: { color: "white" } }
+                legend: {
+                    position: "bottom",
+                    labels: { color: "white", font: { size: 11 } }
+                }
             }
         }
     });
